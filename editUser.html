@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behnews | User Edit</title>
+    <link rel="stylesheet" href="manager.css">
+    
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">خبرگزاری به‌نیوز</a>
+            <nav>
+                <ul class="navbar">
+                    <li class="dropdown">
+                        <a href="#">دسته‌بندی اخبار</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="category.html">اخبار سیاسی</a></li>
+                            <li><a href="category.html">اخبار ورزشی</a></li>
+                            <li><a href="category.html">اخبار بین‌المللی</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html">درباره ما</a></li>
+                </ul>
+            </nav>
+            <a href="index.html" class="login-btn" >خروج</a>
+        </div>
+    </header>
+    
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <main class="main-content">
+            <div class="container" id="editUserContainer">
+                <!-- Content loaded here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer (Same as main page) -->
+    <footer>
+        <div class="footer-content container">
+            <div class="footer-section">
+                <h3>درباره ما</h3>
+                <p>خبرگزاری در ارائه آخرین اخبار روز به صورت لحظه‌ای و معتبر</p>
+            </div>
+            <div class="footer-section">
+                <h3>راه های ارتباط با ما</h3>
+                <p>ایمیل: info@example.com</p>
+                <p>آدرس: بیرجند، دانشگاه بیرجند</p>
+            </div>
+        </div>
+        <pre class="footer-bottom">© ۱۴۰۳ کلیه حقوق برای خبرگزاری محفوظ است</pre>
+    </footer>
+
+
+    <script>
+        // Get user ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('id');
+
+        // Sample user data (replace with API call)
+        const users = [
+            {
+                id: 1,
+                username: "admin1",
+                email: "admin1@example.com",
+                role: "مدیر",
+                status: "active",
+                registered: "۱۴۰۳/۰۳/۱۵"
+            }
+        ];
+
+        // Find the user to edit
+        const userToEdit = users.find(user => user.id == userId);
+
+        // Load edit form
+        const container = document.getElementById('editUserContainer');
+        container.innerHTML = `
+            <div class="user-form">
+                <h1>ویرایش کاربر</h1>
+                <form id="editUserForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editUsername">نام کاربری <span class="required">*</span></label>
+                            <input type="text" id="editUsername" value="${userToEdit.username}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editEmail">ایمیل <span class="required">*</span></label>
+                            <input type="email" id="editEmail" value="${userToEdit.email}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editPassword">رمز عبور جدید</label>
+                            <input type="password" id="editPassword">
+                            <small class="form-hint">در صورت عدم نیاز به تغییر رمز، خالی بگذارید</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editRole">نقش کاربری <span class="required">*</span></label>
+                            <select id="editRole" required>
+                                <option value="مدیر" ${userToEdit.role === 'مدیر' ? 'selected' : ''}>مدیر</option>
+                                <option value="نویسنده" ${userToEdit.role === 'نویسنده' ? 'selected' : ''}>نویسنده</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>وضعیت حساب</label>
+                            <div class="status-options">
+                                <label>
+                                    <input type="radio" name="editStatus" value="active" ${userToEdit.status === 'active' ? 'checked' : ''}>
+                                    فعال
+                                </label>
+                                <label>
+                                    <input type="radio" name="editStatus" value="inactive" ${userToEdit.status === 'inactive' ? 'checked' : ''}>
+                                    غیرفعال
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">ذخیره تغییرات</button>
+                        <a href="index.html" class="cancel-btn">لغو</a>
+                    </div>
+                </form>
+            </div>
+        `;
+
+        // Form submission handler
+        document.getElementById('editUserForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your update logic here
+            alert('تغییرات کاربر با موفقیت ذخیره شد');
+            location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

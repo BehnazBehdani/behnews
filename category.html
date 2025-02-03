@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اخبار سیاسی | خبرگزاری به‌نیوز </title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">>خبرگزاری به‌نیوز</a>
+            <nav>
+                <ul class="navbar">
+                    <li class="dropdown">
+                        <a href="#">دسته‌بندی اخبار</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="political.html">اخبار سیاسی</a></li>
+                            <li><a href="sports.html">اخبار ورزشی</a></li>
+                            <li><a href="international.html">اخبار بین‌المللی</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html">درباره ما</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="login-btn" id="signupbutton">ورود</a>
+        </div>
+    </header>
+
+   
+    <main class="container">
+        <section class="category-full">
+            <h1 class="category-title">اخبار سیاسی</h1>
+            <div class="news-grid">
+                
+                <div class="news-item">
+                    <img src="/asset/img/political1.jpg" alt="News Image">
+                    <h3>تیتر اول خبر سیاسی</h3>
+                    <p>توضیحات کامل‌تر درباره خبر سیاسی اول که می‌تواند چند خط باشد...</p>
+                    <a href="newsDetail.html">خواندن ادامه...</a>
+                </div>
+
+                
+                <div class="news-item">
+                    <img src="/asset/img/political2.jpg" alt="News Image">
+                    <h3>تیتر دوم خبر سیاسی</h3>
+                    <p>توضیحات کامل‌تر درباره خبر سیاسی دوم که می‌تواند چند خط باشد...</p>
+                    <a href="newsDetail.html" >خواندن ادامه...</a>
+                </div>
+
+                
+                <div class="news-item">
+                    <img src="/asset/img/political3.jpg" alt="News Image">
+                    <h3>تیتر سوم خبر سیاسی</h3>
+                    <p>توضیحات کامل‌تر درباره خبر سیاسی سوم که می‌تواند چند خط باشد...</p>
+                    <a href="newsDetail.html" >خواندن ادامه...</a>
+                </div>
+
+                
+                
+            </div>
+        </section>
+    </main>
+
+    
+    <footer>
+        <div class="footer-content container">
+            <div class="footer-section">
+                <h3>درباره ما</h3>
+                <p>خبرگزاری در ارائه آخرین اخبار روز به صورت لحظه‌ای و معتبر</p>
+            </div>
+            <div class="footer-section">
+                <h3>راه های ارتباط با ما</h3>
+                <p>ایمیل: info@example.com</p>
+                <p>آدرس: بیرجند، دانشگاه بیرجند</p>
+            </div>
+        </div>
+        <pre class="footer-bottom">
+            
+            
+            
+            
+            
+            
+            © ۱۴۰۳ کلیه حقوق برای خبرگزاری محفوظ است</pre>
+    </footer>
+
+    
+    <style>
+        
+        .category-full {
+            margin: 40px 0;
+            padding: 20px 0;
+        }
+
+        .category-title {
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #9333ea;
+            padding-bottom: 10px;
+            width: fit-content;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 15px 0;
+        }
+
+        .news-item {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .news-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-item img {
+            height: 200px;
+            object-position: center;
+        }
+
+        .news-item h3 {
+            font-size: 19px;
+            margin: 15px 0;
+        }
+
+        .news-item p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+    </style>
+
+    <script>
+        
+        document.getElementById('signupbutton').addEventListener('click', function() {
+            window.location.href = '/signup.html';
+        });
+
+
+        
+    </script>
+
+</body>
+</html>

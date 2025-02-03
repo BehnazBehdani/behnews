@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behnews | About Us</title>
+    <link rel="stylesheet" href="detailStyle.css">
+</head>
+<body>
+    
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">خبرگزاری به‌نیوز</a>
+            <nav>
+                <ul class="navbar">
+                    <li class="dropdown">
+                        <a href="#">دسته‌بندی اخبار</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="category.html">اخبار سیاسی</a></li>
+                            <li><a href="category.html">اخبار ورزشی</a></li>
+                            <li><a href="category.html">اخبار بین‌المللی</a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </nav>
+            <a href="#" class="login-btn" id="signupbutton">ورود</a>
+        </div>
+    </header>
+
+    
+    <div class="article-container">
+       
+        <article>
+            <header class="article-header">
+                <h1 class="article-title">اطلاعات مختلف درباره ما</h1>
+                <div class="article-meta">
+                    
+                </div>
+            </header>
+
+            <img src="https://picsum.photos/800/400" alt="تصویر خبر" class="article-image">
+
+            <div class="article-content">
+            <p>اطلاعات مختلف</p>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur eius veritatis nobis! Laborum officiis commodi praesentium doloremque necessitatibus quae assumenda amet ratione vitae vero quo eaque atque ipsa, doloribus voluptatum?</p>
+            </div>
+        </article>
+
+        <button class="back-button" onclick="window.history.back()">بازگشت به اخبار</button>
+    </div>
+
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>درباره ما</h3>
+                    <p>خبرگزاری در ارائه آخرین اخبار روز به صورت لحظه‌ای و معتبر</p>
+                </div>
+                <div class="footer-section">
+                    <h3>راه های ارتباط با ما</h3>
+                    <p>ایمیل: info@example.com</p>
+                    <p>آدرس: بیرجند، دانشگاه بیرجند</p>
+                </div>
+            </div>
+            <pre class="footer-bottom">© ۱۴۰۳ کلیه حقوق برای خبرگزاری محفوظ است</pre>
+        </div>
+    </footer>
+
+    <script>
+        
+        document.getElementById('signupbutton').addEventListener('click', function() {
+            window.location.href = '/signup.html';
+        });
+
+        
+        document.querySelectorAll('.back-button').forEach(button => {
+            button.addEventListener('click', () => {
+                window.history.back();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behnews | Category Edit</title>
+    <link rel="stylesheet" href="manager.css">
+</head>
+<body>
+    <!-- Header (Same as main page) -->
+    <header>
+        <header>
+            <div class="container">
+                <a href="index.html" class="logo">خبرگزاری به‌نیوز</a>
+                <nav>
+                    <ul class="navbar">
+                        <li class="dropdown">
+                            <a href="#">دسته‌بندی اخبار</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="category.html">اخبار سیاسی</a></li>
+                                <li><a href="category.html">اخبار ورزشی</a></li>
+                                <li><a href="category.html">اخبار بین‌المللی</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="about.html">درباره ما</a></li>
+                    </ul>
+                </nav>
+                <a href="index.html" class="login-btn" >خروج</a>
+            </div>
+        </header>
+    </header>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <main class="main-content">
+            <div class="container" id="editCategoryContainer">
+                <!-- Content loaded here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer (Same as main page) -->
+    <footer>
+        <footer>
+            <div class="footer-content container">
+                <div class="footer-section">
+                    <h3>درباره ما</h3>
+                    <p>خبرگزاری در ارائه آخرین اخبار روز به صورت لحظه‌ای و معتبر</p>
+                </div>
+                <div class="footer-section">
+                    <h3>راه های ارتباط با ما</h3>
+                    <p>ایمیل: info@example.com</p>
+                    <p>آدرس: بیرجند، دانشگاه بیرجند</p>
+                </div>
+            </div>
+            <pre class="footer-bottom">© ۱۴۰۳ کلیه حقوق برای خبرگزاری محفوظ است</pre>
+        </footer>
+    </footer>
+
+    <script>
+        // Get category ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryId = urlParams.get('id');
+
+        // Sample category data (replace with API call)
+        const categories = [
+            {
+                id: 1,
+                name: "سیاسی",
+                slug: "political",
+                description: "اخبار مرتبط با مسائل سیاسی",
+                status: "active",
+                newsCount: 15
+            }
+        ];
+
+        // Find the category to edit
+        const categoryToEdit = categories.find(cat => cat.id == categoryId);
+
+        // Load edit form
+        const container = document.getElementById('editCategoryContainer');
+        container.innerHTML = `
+            <div class="category-form">
+                <h1>ویرایش دسته بندی</h1>
+                <form id="editCategoryForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editCategoryName">نام دسته بندی <span class="required">*</span></label>
+                            <input type="text" id="editCategoryName" value="${categoryToEdit.name}" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="editCategorySlug">نامک (Slug) <span class="required">*</span></label>
+                            <input type="text" id="editCategorySlug" value="${categoryToEdit.slug}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editCategoryDescription">توضیحات</label>
+                            <textarea id="editCategoryDescription" rows="4">${categoryToEdit.description || ''}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>وضعیت</label>
+                            <div class="status-options">
+                                <label>
+                                    <input type="radio" name="editStatus" value="active" ${categoryToEdit.status === 'active' ? 'checked' : ''}>
+                                    فعال
+                                </label>
+                                <label>
+                                    <input type="radio" name="editStatus" value="inactive" ${categoryToEdit.status === 'inactive' ? 'checked' : ''}>
+                                    غیرفعال
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">ذخیره تغییرات</button>
+                        <a href="index.html" class="cancel-btn">لغو</a>
+                    </div>
+                </form>
+            </div>
+        `;
+
+        // Slug generation from category name
+        const nameInput = document.getElementById('editCategoryName');
+        const slugInput = document.getElementById('editCategorySlug');
+        
+        nameInput.addEventListener('input', function() {
+            const slug = this.value
+                .trim()
+                .toLowerCase()
+                .replace(/[^a-z0-9\u0600-\u06FF]/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-|-$/g, '');
+            slugInput.value = slug;
+        });
+
+        // Form submission handler
+        document.getElementById('editCategoryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your update logic here
+            alert('تغییرات دسته بندی با موفقیت ذخیره شد');
+            location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

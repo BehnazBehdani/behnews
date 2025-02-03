@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behnews | News </title>
+    <link rel="stylesheet" href="manager.css">
+</head>
+<body>
+    <!-- Header (Same as main page) -->
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">خبرگزاری به‌نیوز</a>
+            <nav>
+                <ul class="navbar">
+                    <li class="dropdown">
+                        <a href="#">دسته‌بندی اخبار</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="category.html">اخبار سیاسی</a></li>
+                            <li><a href="category.html">اخبار ورزشی</a></li>
+                            <li><a href="category.html">اخبار بین‌المللی</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html">درباره ما</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="login-btn" id="signupbutton">ورود</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <main class="main-content">
+            <div class="container" id="editNewsContainer">
+                <!-- Content will be loaded here by JavaScript -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer (Same as main page) -->
+    <footer>
+        <!-- ... same footer content ... -->
+    </footer>
+
+    <script>
+        // Get news ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const newsId = urlParams.get('id');
+
+        // Sample news data (replace with actual data fetching)
+        const newsArticles = [
+            {
+                id: 1,
+                title: "عنوان خبر اول",
+                date: "۱۴۰۳/۰۴/۱۵",
+                category: "سیاسی",
+                content: "متن کامل خبر اول...",
+                image: "placeholder.jpg",
+                status: "publish"
+            }
+        ];
+
+        // Find the news item to edit
+        const newsToEdit = newsArticles.find(news => news.id == newsId);
+
+        // Load edit form
+        const container = document.getElementById('editNewsContainer');
+        container.innerHTML = `
+            <div class="news-form">
+                <h1>ویرایش خبر</h1>
+                <form id="editNewsForm">
+                    <div class="form-grid">
+                        <!-- Similar form to add news but with existing values -->
+                        <div class="form-left">
+                            <div class="form-group">
+                                <label for="editTitle">عنوان خبر <span class="required">*</span></label>
+                                <input type="text" id="editTitle" value="${newsToEdit.title}" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="editCategory">دسته بندی <span class="required">*</span></label>
+                                <select id="editCategory" required>
+                                    <option value="سیاسی" ${newsToEdit.category === 'سیاسی' ? 'selected' : ''}>سیاسی</option>
+                                    <option value="ورزشی" ${newsToEdit.category === 'ورزشی' ? 'selected' : ''}>ورزشی</option>
+                                    <option value="بین المللی" ${newsToEdit.category === 'بین المللی' ? 'selected' : ''}>بین المللی</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="editDate">تاریخ انتشار <span class="required">*</span></label>
+                                <input type="date" id="editDate" value="${newsToEdit.date}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="editContent">متن خبر <span class="required">*</span></label>
+                                <textarea 
+                                    id="editContent" 
+                                    rows="8" 
+                                    required
+                                >${newsToEdit.content}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-right">
+                            <div class="form-group">
+                                <label>عکس شاخص خبر</label>
+                                <div class="image-upload-box">
+                                    <input type="file" id="editImage" accept="image/*">
+                                    <label for="editImage" class="upload-label">
+                                        <img src="${newsToEdit.image}" class="current-image" alt="Current Image">
+                                        <div class="image-preview" id="editImagePreview"></div>
+                                        <span>تغییر عکس</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>وضعیت انتشار</label>
+                                <div class="publish-options">
+                                    <label>
+                                        <input type="radio" name="editStatus" value="draft" ${newsToEdit.status === 'draft' ? 'checked' : ''}>
+                                        پیش نویس
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="editStatus" value="publish" ${newsToEdit.status === 'publish' ? 'checked' : ''}>
+                                        انتشار فوری
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">ذخیره تغییرات</button>
+                        <a href="index.html" class="cancel-btn">لغو</a>
+                    </div>
+                </form>
+            </div>
+        `;
+
+        // Add image preview functionality
+        const imageInput = document.getElementById('editImage');
+        const preview = document.getElementById('editImagePreview');
+
+        imageInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Image Preview">`;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Form submission handler
+        document.getElementById('editNewsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your update logic here
+            alert('تغییرات با موفقیت ذخیره شد');
+            location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
